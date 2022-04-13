@@ -1,0 +1,55 @@
+<div class="universities" [hidden]="!tableIsVisible">
+  <h1>Universities of <span>{{ country }}</span></h1>
+
+  <mat-form-field>
+    <input matInput (keyup)="filterByName($event)" placeholder="Filter By Name...">
+  </mat-form-field>
+
+  <div class="table-container">
+    <table
+      mat-table
+      [dataSource]="universitiesdataSource"
+      matSort
+      cdkDropList
+      [cdkDropListData]="universitiesdataSource"
+      (cdkDropListDropped)="dropRow($event)"
+    >
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+
+        <td mat-cell *matCellDef="let university">{{ university.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="web_pages">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Web Pages</th>
+
+        <td mat-cell *matCellDef="let university">{{ university.web_pages.join(', ') }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="domains">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Domains</th>
+
+        <td mat-cell *matCellDef="let university">{{ university.domains.join(', ') }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+      <tr  
+        mat-row *matRowDef="let row; columns: displayedColumns;"
+        cdkDragHandle cdkDrag [cdkDragData]="row"
+      ></tr>
+      
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" [colSpan]="displayedColumns.length">
+          No university matching the name.
+        </td>
+      </tr>
+      
+    </table>
+  </div>
+
+  <mat-paginator [pageSizeOptions]="[5, 20, 50]"
+                  showFirstLastButtons 
+                  aria-label="Select page of universities">
+  </mat-paginator>
+</div>

@@ -1,0 +1,37 @@
+:host {
+    display: block;
+    max-width: 100%;
+}
+
+.universities {
+    padding: 2rem 0.5rem;
+}
+
+h1 {
+    text-align: center;
+
+    span {
+        text-transform: capitalize;
+    }
+}
+
+table {
+    width: 100%;
+
+    th,
+    td {
+        padding: 10px;
+        transition: .3s;
+    }
+
+    tr:hover td {
+        background: #bbb;
+        cursor: move;
+    }
+}
+
+.table-container {
+    width: 80vw;
+    max-width: 100%;
+    overflow-x: auto;
+}

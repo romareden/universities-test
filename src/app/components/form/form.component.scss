@@ -1,0 +1,24 @@
+:host {
+    display: block;
+    box-sizing: border-box;
+    padding: 2rem 0.5rem;
+    min-width: 50vw;
+    max-width: 100%;
+}
+
+mat-form-field {
+    display: block;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+
+    button {
+        margin: 1rem 0.5rem;
+
+        mat-icon {
+            margin-right: 0.6rem;
+        }
+    }
+}

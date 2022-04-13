@@ -1,0 +1,41 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field class="search-input" appearance="fill">
+      <mat-label>Search for University</mat-label>
+
+      <input
+        matInput
+        placeholder="Type in the country"
+        value=""
+        formControlName="country"
+        [matAutocomplete]="auto"
+      >
+
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onSubmit()">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+      
+      <mat-error *ngIf="countryControl.errors?.['required']">
+        Country is required.
+      </mat-error>
+
+      <mat-error *ngIf="countryControl.errors?.['invalidCountryName']">
+        Looks like this country doesn't exist.
+      </mat-error>
+    </mat-form-field>
+
+    <div class="buttons">
+      <button mat-raised-button color="primary" type="submit">
+        <mat-icon>search</mat-icon>
+
+        <span>Search</span>
+      </button>
+  
+      <button mat-raised-button color="warn" type="button" (click)="imLucky()">
+        <mat-icon>casino</mat-icon>
+
+        <span>I'm lucky!</span>
+      </button>
+    </div>
+  </form>
